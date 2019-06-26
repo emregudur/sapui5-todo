@@ -1,0 +1,154 @@
+<mvc:View
+	controllerName="todoapp.controller.Startpage"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:layout="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	data-sap-ui-preload="async"
+	xmlns:table="sap.ui.table"
+	xmlns:tnt="sap.tnt"
+	xmlns:microchart="sap.suite.ui.microchart">
+	<Page showHeader="false">
+	<tnt:ToolHeader>
+		<Button text="Yeni Task" type="Transparent" press="navToTask">
+		</Button>
+		<MenuButton text="Tools" type="Transparent">
+			<menu>
+				<Menu>
+					<items>
+						<MenuItem text="Kullanıcılar" press="navToAll" icon="sap-icon://chalkboard">
+						</MenuItem>
+					</items>
+				</Menu>
+			</menu>
+		</MenuButton>
+		<tnt:ToolHeaderUtilitySeparator />
+		<ToolbarSpacer>
+			<layoutData>
+				<OverflowToolbarLayoutData minWidth="20px" />
+			</layoutData>
+		</ToolbarSpacer>
+		<SearchField width="240px">
+			<layoutData>
+				<OverflowToolbarLayoutData priority="NeverOverflow" />
+			</layoutData>
+		</SearchField>
+		<Button text="{/user/personelAdi} {/user/personelSoyadi}" type="Transparent">
+			<layoutData>
+				<OverflowToolbarLayoutData priority="NeverOverflow" />
+			</layoutData>
+		</Button>
+
+	</tnt:ToolHeader>
+		<VBox class="sapUiSmallMargin">
+			<HBox width="200px">
+				<Button
+					text="İşler"
+					press="handleNav">
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+					<customData>
+						<core:CustomData
+							key="target"
+							value="sorumlu" />
+					</customData>
+				</Button>
+				<Button
+					text="Verilen işler"
+					press="handleNav">
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+					<customData>
+						<core:CustomData
+							key="target"
+							value="olusturan" />
+					</customData>
+				</Button>
+				<Button
+					text="Bilgi"
+					press="handleNav">
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+					<customData>
+						<core:CustomData
+							key="target"
+							value="bilgi" />
+					</customData>
+				</Button>
+			</HBox>
+			<NavContainer
+				id="navCon"
+				width="100%"
+				height="30em"
+				class="navContainerControl sapUiSmallMarginBottom">
+				<Page
+					id="p1"
+					title="İşler" >
+					<table:Table id="Table1" selectionMode="None" enableSelectAll="false" rows="{/task}">
+			            <table:columns>
+	                        <table:Column sortProperty="proje" filterProperty="name">
+                            	<Label text="Proje"/>
+                                <table:template><Text text="{projeAdi}"></Text></table:template>
+	                        </table:Column>
+
+	                        <table:Column sortProperty="oncelik">
+                             	<Label text="Öncelik"/>
+                                <table:template><Text text="{oncelikText}"></Text></table:template>
+	                        </table:Column>
+
+	                        <table:Column sortProperty="kategori">
+                             	<Label text="Kategori"/>
+                                <table:template><Text text="{kategoriText}" ></Text></table:template>
+	                        </table:Column>
+
+	                        <table:Column sortProperty="sorumlu">
+                             	<Label text="Sorumlu kişi"/>
+                                <table:template><Text text="{sorumluAdi}"></Text></table:template>
+	                        </table:Column>
+
+	                        <table:Column sortProperty="konu">
+                             	<Label text="Konu"/>
+                                <table:template><Text text="{konu}" ></Text></table:template>
+	                        </table:Column>
+
+	                        <table:Column sortProperty="durum">
+                             	<Label text="Durum"/>
+                                <table:template><Text text="{durumText}" ></Text></table:template>
+	                        </table:Column>
+
+	                        <table:Column sortProperty="tId">
+                             	<Label text="Ticket ID"/>
+                                <table:template><Text text="{ticketId}" ></Text></table:template>
+	                        </table:Column>
+
+	                        <table:Column sortProperty="tip">
+                             	<Label text="Mesaj Tipi"/>
+                                <table:template><Text text="{mesajText}" ></Text></table:template>
+	                        </table:Column>
+
+	                        <table:Column sortProperty="oluşturan">
+                             	<Label text="Oluşturan"/>
+                                <table:template><Text text="{olusturanAdi}" ></Text></table:template>
+	                        </table:Column>
+
+	                        <table:Column sortProperty="degisim">
+                             	<Label text="Değişim"/>
+                                <table:template><Text text="{guncellemeTarihi}" ></Text></table:template>
+	                        </table:Column>
+
+	                        <table:Column sortProperty="olusum">
+                             	<Label text="Oluşum"/>
+                                <table:template><Text text="{olusturulmaTarihi}" ></Text></table:template>
+	                        </table:Column>
+			            </table:columns>
+
+  					</table:Table>
+					<footer><Toolbar></Toolbar></footer>
+				</Page>
+			</NavContainer>
+		</VBox>
+	</Page>
+</mvc:View>

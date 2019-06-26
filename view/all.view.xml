@@ -1,0 +1,52 @@
+<mvc:View
+	controllerName="todoapp.controller.all"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:microchart="sap.suite.ui.microchart">
+	<Page title="" showNavButton="true" navButtonType="Back" navButtonPress="navButtonBack">
+		<HBox class="sapUISmallMargin">
+			<HBox width="50%">
+				<VBox>
+					<Table items="{/personeller}">
+					    <columns>
+					        <Column>
+					            <Label text="Personel Listesi" />
+					        </Column>
+					        <!-- etc -->
+					    </columns>
+					    <items>
+					        <ColumnListItem>
+					            <cells>
+					                <Link text="{personelAdi} {personelSoyadi}" href="./index.html#/Task/{personelId}">
+					                </Link>
+					            </cells>
+					        </ColumnListItem>
+					    </items>
+					</Table>
+				</VBox>
+			</HBox>
+			<HBox width="50%">
+				<VBox>
+					<Table items="{/projeler}">
+					    <columns>
+					        <Column>
+					            <Label text="Proje Listesi" />
+					        </Column>
+					        <!-- etc -->
+					    </columns>
+					    <items>
+					        <ColumnListItem>
+					            <cells>
+					                <Link text="{projeAdi}" href="">
+					                </Link>
+					            </cells>
+					        </ColumnListItem>
+					    </items>
+					</Table>
+				</VBox>
+			</HBox>
+		</HBox>
+	</Page>
+</mvc:View>

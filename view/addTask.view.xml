@@ -1,0 +1,70 @@
+<mvc:View
+	controllerName="todoapp.controller.addTask"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:microchart="sap.suite.ui.microchart">
+	<Page title="" showNavButton="true" navButtonType="Back" navButtonPress="navButtonBack">
+		<HBox class="sapUiSmallMargin">
+			<Button icon="sap-icon://save" press="saveTask"/>
+		</HBox>
+		<HBox>
+			<VBox width="50%">
+				<VBox width="90%" class="sapUiSmallMargin">
+					<Label text="Proje" labelFor="project"/>
+					<Input
+						id="proje"
+						suggestionItems="{
+							path: '/proje'
+						}"
+						showValueHelp="false"
+						showSuggestion="true">
+						<core:Item key="{projeId}" text="{projeAdi}"/>
+					</Input>
+					<Label text="Kime" labelFor="from"/>
+					<MultiInput
+						id="from"
+						suggestionItems="{
+							path: '/personeller'
+						}"
+						showValueHelp="false">
+						<core:Item key="{personelId}" text="{personelAdi} {personelSoyadi}" />
+					</MultiInput>
+					<Label text="Bilgi" labelFor="info"/>
+					<MultiInput
+						id="info"
+						suggestionItems="{
+							path: '/personeller'
+						}"
+						showValueHelp="false">
+						<core:Item key="{personelId}" text="{personelAdi} {personelSoyadi}" />
+					</MultiInput>
+					<Label text="Konu" labelFor="konu"/>
+					<Input id="konu" required="true"/>	
+				</VBox>
+			</VBox>
+			<VBox width="50%">
+				<VBox width="90%" class="sapUiSmallMargin">
+					<Label text="Servis Talebi" labelFor="servisTalebi"/>
+					<Select id="mesaj" width="100%" change="onSelectWeekChange" items="{/mesaj}" selectedKey="0">
+						<core:Item key="{mesajId}" text="{mesajText}" /> 
+					</Select>
+					<Label text="Durum" labelFor="durum"/>
+					<Select id="durum" width="100%" change="onSelectWeekChange" items="{/durum}" selectedKey="0">
+						<core:Item key="{durumId}" text="{durumText}" /> 
+					</Select>	
+					<Label text="Kategori" labelFor="kategori"/>
+					<Select id="kategori" width="100%" change="onSelectWeekChange" items="{/kategori}" selectedKey="0">
+						<core:Item key="{kategoriId}" text="{kategoriText}" /> 
+					</Select>
+					<Label text="Öncelik" labelFor="oncelik"/>
+					<Select id="oncelik" width="100%" change="onSelectWeekChange" items="{/oncelik}" selectedKey="0">
+						<core:Item key="{oncelikId}" text="{oncelikText}" /> 
+					</Select>
+				</VBox>
+			</VBox>
+		</HBox>
+		<l:VerticalLayout id="isTanimi" class="sapUiSmallMargin" width="95%"></l:VerticalLayout>
+	</Page>
+</mvc:View>

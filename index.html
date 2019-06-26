@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>ToDoApp</title>
+
+	<script id="sap-ui-bootstrap"
+			src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_belize"
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-resourceroots='{
+				"todoapp": ""
+			}'
+			data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
+			data-sap-ui-animation="false"
+			data-sap-ui-async="true">
+	</script>
+
+</head>
+
+<body class="sapUiBody" id="content">
+	<div data-sap-ui-component data-name="todoapp" data-id="container"></div>
+</body>
+<script type="text/javascript">
+	var Database_Name = 'todo';
+	var Version = 1.0;  
+	var Text_Description = '';  
+	var Database_Size = 2 * 1024 * 1024;
+	var dbObj = openDatabase(Database_Name, Version, Text_Description, Database_Size); 
+
+	dbObj.transaction(function (tx){  
+		tx.executeSql('CREATE TABLE IF NOT EXISTS proje (id unique ,projeId varchar(12), projeAdi varchar(255))');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS personel (id unique, personelId varchar(12), personelAdi varchar(42), personelSoyadi varchar(42), personelDepartman varchar(100))');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS task (id unique, ticketId varchar(12), projeId varchar(12), sorumlu varchar(12), olusturan varchar(12), bilgi varchar(12), oncelik varchar(4), kategori varchar(4), konu varchar(255), durum varchar(4), mesajTipi varchar(4), olusturulmaTarihi date, guncellemeTarihi date, isTanimi text)');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS mesaj (id unique ,mesajId varchar(4), mesajText varchar(40))');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS durum (id unique ,durumId varchar(4), durumText varchar(40))');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS kategori (id unique ,kategoriId varchar(4), kategoriText varchar(40))');
+		tx.executeSql('CREATE TABLE IF NOT EXISTS oncelik (id unique ,oncelikId varchar(4), oncelikText varchar(40))');
+	});
+</script>
+<!-- <script type="text/javascript" src="./service/db.js"></script>
+<script type="text/javascript" src="./service/taskService.js"></script> -->
+</html>
